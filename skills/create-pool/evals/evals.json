@@ -1,0 +1,52 @@
+{
+  "skill_name": "learning-pool",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to learn TypeScript properly, I know JS well already. Use the official TS handbook (https://www.typescriptlang.org/docs/handbook/intro.html) as material. I've got about 2 weeks, 3hrs/day. Build me a pool.",
+      "expected_output": "A learning-pool directory with an overview file (topic, concept list, calibration notes, chosen exercise-authorship mode, arc summary) and per-day files sized to ~14 days at 3hrs/day, starting from an intermediate/JS-fluent baseline rather than absolute basics, referencing or grounded in the official TS handbook, with self-checks per day and at least one weekly exam checkpoint. No project brief or grading content.",
+      "files": [],
+      "expectations": [
+        "An overview file exists that names the topic, a concept list, calibration notes, and the chosen exercise-authorship mode (pointer or grounded)",
+        "Day-by-day files exist, sized to roughly 2 weeks (around 10-14 day files) rather than a fixed generic length",
+        "Day content is grounded in or explicitly points to the official TypeScript handbook rather than generic TS knowledge disconnected from any material",
+        "The starting difficulty assumes JS fluency (e.g. skips 'what is a variable'-level content) rather than starting from absolute zero",
+        "Each day file includes a distinct self-check section separate from the main task(s)",
+        "At least one weekly or final exam/checkpoint file exists, separate from the daily files",
+        "No day or exam file contains a worked solution/answer to its own exercise",
+        "No full multi-day capstone project brief is included; scope stays within roadmap, daily exercises, and exams"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up a piscine for learning GIMP from scratch — total beginner. Use the official GIMP docs (https://docs.gimp.org/2.10/en/) as material. Want to be comfortable doing basic photo editing in about 10 days.",
+      "expected_output": "A learning-pool directory paced for a true beginner (no assumed prior tool knowledge) over ~10 days, grounded in the GIMP manual, with concrete daily deliverables suited to a non-coding, GUI-based tool (not code exercises), self-checks per day, and a final checkpoint. No project brief or grading content.",
+      "files": [],
+      "expectations": [
+        "An overview file exists that names the topic, a concept list, calibration notes reflecting true-beginner status, and the chosen exercise-authorship mode",
+        "Day-by-day files exist, sized to roughly 10 days",
+        "Day content is grounded in or explicitly points to the official GIMP documentation rather than generic photo-editing knowledge disconnected from any material",
+        "Daily deliverables are GUI/tool-based tasks appropriate to GIMP, not code-writing exercises",
+        "Each day file includes a distinct self-check section separate from the main task(s)",
+        "A final exam/checkpoint file exists, separate from the daily files",
+        "No day or exam file contains a worked solution/answer to its own exercise",
+        "No full multi-day capstone project brief is included; scope stays within roadmap, daily exercises, and exams"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Make me a crypto/blockchain fundamentals pool using Mastering Bitcoin (https://github.com/bitcoinbook/bitcoinbook) as material. I'm technical (backend dev) but new to crypto specifically. Give me 3 weeks.",
+      "expected_output": "A learning-pool directory spanning 3 weeks, grounded in Mastering Bitcoin, calibrated to a technical-but-crypto-novice operator (can skip general programming basics, needs crypto-specific concepts from scratch), organized into week folders each ending in an exam checkpoint, with concrete conceptual daily deliverables rather than vague 'learn about X' objectives.",
+      "files": [],
+      "expectations": [
+        "An overview file exists that names the topic, a concept list, calibration notes reflecting a technical-but-crypto-novice operator, and the chosen exercise-authorship mode",
+        "Content is organized into week groupings (week-01, week-02, week-03 or equivalent) matching the 3-week request, each ending in its own exam/checkpoint file",
+        "Day content is grounded in or explicitly points to Mastering Bitcoin rather than generic crypto knowledge disconnected from any material",
+        "Daily objectives are concrete and checkable, not vague phrasing like 'learn about mining'",
+        "Each day file includes a distinct self-check section separate from the main task(s)",
+        "No day or exam file contains a worked solution/answer to its own exercise",
+        "No full multi-day capstone project brief is included; scope stays within roadmap, daily exercises, and exams"
+      ]
+    }
+  ]
+}

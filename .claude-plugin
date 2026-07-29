@@ -1,0 +1,8 @@
+{
+  "name": "fortytwo",
+  "description": "A plugin that replicates the immersive, project-based learning approach used by intensive french programming schools",
+  "version": "1.0.0",
+  "author": {
+    "name": "Théo Penavaire"
+  }
+}
