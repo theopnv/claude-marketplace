@@ -5,8 +5,8 @@ A marketplace of Claude Code plugins. No guarantee they work or are safe to use 
 ## Install
 
 ```
-/plugin marketplace add theopnv/claude-marketplace
-/plugin install fortytwo@claude-marketplace
+/plugin marketplace add theopnv/plugins-from-theopnv
+/plugin install fortytwo@plugins-from-theopnv
 ```
 
 ## Plugins

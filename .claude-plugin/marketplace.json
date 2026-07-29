@@ -1,5 +1,5 @@
 {
-  "name": "claude-marketplace",
+  "name": "plugins-from-theopnv",
   "owner": { "name": "Théo Penavaire" },
   "version": "1.0.0",
   "description": "Some plugins I found useful and/or interesting, for Claude to use in its responses. I don't guarantee that they work or that they are safe to use.",
