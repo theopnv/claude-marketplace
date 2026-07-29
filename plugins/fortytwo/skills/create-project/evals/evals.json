@@ -1,0 +1,45 @@
+{
+  "skill_name": "create-project",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just spent a week on Rust ownership, borrowing, lifetimes and traits \u2014 chapters 4, 10 and 15 of the Rust Book. I want a proper weekend project out of it, not another toy exercise. The thing I actually need is to be forced to fight the borrow checker instead of sprinkling .clone() everywhere like I've been doing all week. Solo, roughly 12-16 hours.",
+      "expected_output": "Two or three grounded candidate projects offered first with what each forces the learner to use, then (after a pick, or with a clearly-flagged default if the operator doesn't answer) a full subject.md in its own directory: header block with deliverable/medium/group size/duration/submission, house rules, context, a 'before you start' pointing back at the Rust Book chapters, an exactly-specified input, a byte-exact expected output including ordering/stderr/exit status with tie-breaks legislated, an Authorized/Forbidden section that bans the specific shortcuts that would let the project be finished without engaging the borrow checker, while leaving authorized any construct that is the legitimate solution rather than the shortcut, at least one worked example plus a degenerate case, a runnable self-check, and a 'going further' bonus. No solution, no suggested architecture, no grading rubric.",
+      "files": [],
+      "expectations": [
+        "Candidate projects are proposed before a full brief is written, rather than jumping straight to one project",
+        "A subject file is written to disk in its own project directory, not just printed in chat",
+        "The brief contains a header block naming the deliverable, medium, group size and duration",
+        "The input specification states what is guaranteed and what the limits are, concretely enough to implement against",
+        "The expected output is specified exactly, including ordering and how failure is signalled (stderr / exit status)",
+        "At least one ambiguity (ties, empty input, duplicates, or similar) is explicitly legislated with a rule",
+        "The Forbidden section names the specific shortcuts that would let the project be completed without engaging borrow-checker semantics, and does not ban constructs that are the legitimate solution rather than the shortcut",
+        "Forbidden approaches (hardcoding expected output, special-casing the example input) are named, not only forbidden tools",
+        "At least one fully worked example shows exact input paired with exact output",
+        "At least one edge or degenerate case example is included",
+        "A self-check section is present and is something the learner can actually run or verify against their own work",
+        "A 'going further' / bonus section is present and is separable from the mandatory part",
+        "No solution, partial solution, starter code, or suggested data structure/architecture appears anywhere in the brief",
+        "No grading rubric or point allocation appears in the brief"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm two weeks into an accounting pool \u2014 double-entry, accruals and prepayments, the trial balance. Daily exercises are getting stale and I want a real project. Materials are my ACCA FA (F3) study notes. I want something where I can tell for myself whether I got it right, and I do NOT want to be able to cheat my way through it with spreadsheet auto-sum.",
+      "expected_output": "A subject for a non-software domain that is nonetheless determinate: the brief pushes determinacy into the input (a fixed set of journal entries / an opening trial balance supplied as a companion resource under resources/) so that exactly one correct closing trial balance and P&L exists. Exact output format specified (ordering, which columns, how totals are presented). Forbidden section bans spreadsheet auto-sum, pre-built templates and any pre-computed answer key. Worked example plus a degenerate case. Self-check the learner can run (totals reconcile from two directions). No rubric, no worked solution.",
+      "files": [],
+      "expectations": [
+        "The project is designed so that exactly one correct output exists, rather than falling back to vague qualitative criteria",
+        "Determinacy is achieved by constraining the input (a fixed, supplied set of entries/balances) rather than by adding a scoring rubric",
+        "A companion resource file containing the input data is actually written to disk alongside the brief",
+        "The companion resource does not leak the answer (no expected output, no pre-computed totals, no solution key)",
+        "The expected output format is specified exactly \u2014 ordering, columns, and how totals are presented",
+        "The Forbidden section bans the shortcut the operator named (spreadsheet auto-sum) and pre-built templates",
+        "The brief uses 'Expected output' rather than falling back to 'Acceptance criteria', since this domain does admit a determinate answer",
+        "A self-check is present that lets the learner verify correctness independently (e.g. reconciling totals from two directions)",
+        "The brief contains no worked solution, no completed trial balance, and no rubric",
+        "The brief is written to disk as a subject file in its own project directory"
+      ]
+    }
+  ]
+}
