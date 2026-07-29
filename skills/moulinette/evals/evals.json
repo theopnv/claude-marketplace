@@ -4,63 +4,70 @@
     {
       "id": 1,
       "prompt": "Here's day 3 of my Python pool and what I turned in. Grade it.",
-      "expected_output": "A moulinette report giving a grade in the 6-12 range (works on the happy path, fails several self-check cases), backed by evidence from actually running wordfreq.py: IndexError with no arguments, an unhandled traceback rather than a readable error on a missing file, a crash on a file with fewer than 10 distinct words, ties not broken alphabetically, and incomplete punctuation stripping. Not -42, since the program runs correctly on valid input. Findings sorted by severity with per-axis point costs, and no corrected code anywhere in the report.",
+      "expected_output": "A moulinette report giving a low-but-not-zero grade (roughly 2-9), backed by evidence from actually running wordfreq.py: IndexError with no arguments, an unhandled traceback rather than a readable error on a missing file, a crash on a file with fewer than 10 distinct words, ties not broken alphabetically, and incomplete punctuation stripping. Findings sorted by severity with per-axis point costs, the polish gate applied to the presentation axes, and no fix, patch, or corrected code anywhere in the report — including in the closing section.",
       "files": [
         "fixtures/word-freq/day-03.md",
         "fixtures/word-freq/wordfreq.py"
       ],
       "expectations": [
-        "A report file is written (moulinette-report.md or moulinette-day-03.md) rather than the grade only appearing in chat",
-        "The grade is a number out of 20 and falls between 6 and 12 inclusive",
-        "The grade is NOT -42; the report does not treat a working-on-valid-input program as a disqualification",
-        "The report contains a verification section showing commands that were actually executed against wordfreq.py, with their real output",
-        "The crash on a file with fewer than 10 distinct words is identified, and the evidence is a run rather than an assertion",
+        "A report file is written rather than the grade only appearing in chat",
+        "The report file follows the skill's naming convention (moulinette-report.md or moulinette-day-03.md)",
+        "The grade is a whole number out of 20 and falls between 2 and 9 inclusive",
+        "The report contains a verification section showing commands actually executed against wordfreq.py, with their real output",
+        "The crash on a file with fewer than 10 distinct words is identified, evidenced by a run rather than an assertion",
         "The unhandled traceback on a missing file is identified as failing the subject's requirement for a readable stderr message",
         "The failure to break frequency ties alphabetically is identified",
-        "A per-axis score breakdown appears with awarded/max per axis, summing to the stated grade",
+        "A per-axis score breakdown appears with awarded/max per axis, and the stated grade equals the sum shown",
+        "The polish gate is visibly applied: Craft/Fitness/Recipient experience are scaled by the Mandatory score rather than awarded at face value",
         "Findings are grouped or labelled by severity (dangerous / bad practice / suggestion)",
-        "No finding contains corrected code, a patch, or a worked fix for the problems it identifies"
+        "No finding contains corrected code, a patch, or a worked fix for the problem it identifies",
+        "The closing section ranks where points were lost and contains no imperative fixes (no 'use X', 'add Y', 'wrap Z', 'replace W')",
+        "The report never names the specific construct that would resolve a defect (e.g. does not mention min(), a tuple sort key, or try/except as the remedy)"
       ]
     },
     {
       "id": 2,
       "prompt": "Can you mark this? It's the day 5 bookkeeping exercise from my accounting pool — the trial balance is the submission.",
-      "expected_output": "A moulinette report that treats a non-software submission with the same rigour: independently recomputes the ledger columns, catches that the 22/03 collection was posted to Cash with no offsetting credit to Accounts Receivable, that Accounts Receivable is therefore overstated at 4,500 when it should be nil, and that the stated credit total of 19,250 is a plug figure (the column actually sums to 14,750), violating the subject's explicit no-plug-figures constraint. Grade should be low, roughly 3-9. The silently wrong figures should be classed as dangerous.",
+      "expected_output": "A moulinette report that treats a non-software submission with the same rigour: independently recomputes the ledger columns, catches that the 22/03 collection was posted to Cash with no offsetting credit to Accounts Receivable, that Accounts Receivable is therefore overstated at 4,500 when it should be nil, and that the stated credit total of 19,250 is a plug figure (the column actually sums to 14,750), violating the subject's explicit no-plug-figures constraint. The plugged total should score zero on Mandatory for that deliverable under the 'producing the expected output without producing it' rule, and the polish gate should stop the tidy formatting from banking full presentation points. Grade roughly 3-9. The silently wrong figures should be classed as dangerous.",
       "files": [
         "fixtures/bookkeeping/day-05.md",
         "fixtures/bookkeeping/trial-balance.md"
       ],
       "expectations": [
-        "A report file is written with a grade out of 20",
+        "A report file is written with a whole-number grade out of 20",
         "The report independently recomputes at least one column total rather than accepting the submission's stated totals",
         "The credit column is identified as not summing to the stated 19,250 total (actual 14,750)",
         "The missing credit to Accounts Receivable on the 22/03 collection is identified",
         "The overstated Accounts Receivable balance is identified as a wrong figure, not merely a formatting issue",
         "The plugged total is tied back to the subject's explicit 'no plug figures' constraint",
         "The grade falls between 0 and 9 inclusive",
+        "The polish gate is visibly applied: the tidy formatting does not earn full Craft/Fitness/Recipient marks on a submission whose headline total is fabricated",
         "At least one finding is classified at the highest severity (dangerous), reflecting silently incorrect figures",
         "The report does not contain a corrected ledger or corrected trial balance",
-        "The skill applies its normal rubric to this non-code submission rather than declining or asking for a code-specific framing"
+        "The closing section ranks where points were lost and contains no imperative fixes or restated correct figures",
+        "The normal rubric is applied to this non-code submission rather than declining or asking for a code-specific framing"
       ]
     },
     {
       "id": 3,
       "prompt": "Grade my week 1 exam submission please, I think I nailed it — it passes the self-check in the subject.",
-      "expected_output": "A moulinette report awarding -42, with evidence: mysort.py special-cases the exact self-check input string and prints the expected answer without sorting, which is bypassing the constraint rather than meeting it. Supporting evidence from running it on other inputs, where the fallback path uses the forbidden list.sort() and sorts lexicographically (e.g. '10 9 2' produces wrong order). The report should distinguish this from a 0 and should not be swayed by the student's claim that it passes the self-check.",
+      "expected_output": "A moulinette report grading at or near zero. mysort.py special-cases the exact self-check input string and prints the expected answer without sorting, so under the 'producing the expected output without producing it' rule the mandatory deliverable scores zero; the fallback path additionally uses the forbidden list.sort() (a constraint violation) and sorts lexicographically, so '10 9 2' comes out wrong. With Mandatory at zero the polish gate zeroes the presentation axes too. The report should not be swayed by the student's claim that it passes the self-check, and must not contain a working sort or any instruction on how to write one.",
       "files": [
         "fixtures/mysort/exam-week-01.md",
         "fixtures/mysort/mysort.py"
       ],
       "expectations": [
-        "The grade awarded is -42",
-        "The report cites the hardcoded special case for the exact self-check input as the reason, quoting or pointing to the specific line",
+        "The grade is a whole number out of 20 and falls between 0 and 2 inclusive",
+        "The report cites the hardcoded special case for the exact self-check input, quoting or pointing to the specific line",
+        "The hardcoded output is scored under the 'producing the expected output without producing it' rule, zeroing the mandatory deliverable rather than earning partial credit for appearing to pass",
         "Evidence includes running the program on an input other than the self-check example, demonstrating the fallback path's behaviour",
         "The use of the forbidden list.sort() is identified as a constraint violation",
         "The lexicographic (string) sort producing wrong order for multi-digit integers is identified",
         "The absence of any invalid-input handling is identified (a non-integer token is silently accepted and the program exits 0)",
-        "The report explicitly distinguishes -42 from a grade of 0, rather than using them interchangeably",
         "The student's claim that it passes the self-check does not soften the verdict",
-        "The report does not contain a working sort implementation"
+        "The report does not contain a working sort implementation",
+        "The report does not name which sorting algorithm to implement, nor instruct converting tokens to int, nor otherwise prescribe the remedy",
+        "The report contains no accusation of cheating, dishonesty, or academic misconduct — the faked output is treated as a grading fact, not a disciplinary one"
       ]
     }
   ]
