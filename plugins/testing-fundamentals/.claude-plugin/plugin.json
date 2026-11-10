@@ -1,0 +1,8 @@
+{
+  "name": "testing-fundamentals",
+  "description": "Gives Claude the knowledge of a Foundation Level software tester, based on the ISTQB CTFL v4.0 syllabus: risk-based test audits, systematic test design, change reviews, and test management artifacts",
+  "version": "0.1.0",
+  "author": {
+    "name": "Théo Penavaire"
+  }
+}

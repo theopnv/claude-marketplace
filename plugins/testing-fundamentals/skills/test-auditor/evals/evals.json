@@ -1,0 +1,100 @@
+{
+  "skill_name": "test-auditor",
+  "evals": [
+    {
+      "id": 1,
+      "name": "shopcart-audit",
+      "prompt": "We're about to put shopcart (the checkout pricing lib in this folder) behind our new mobile app and I'm nervous about the tests. Can you audit the test suite and the way we test, like a certified tester would, and tell me what we should fix first?",
+      "expected_output": "A dated audit report in docs/ of the repo. It runs the suite and measures statement and branch coverage, finds the test with no assertion, reproduces several of the planted failures (discount stacking R3, coupon minimum checked before discount, multiple coupons, free shipping at exactly 50.00, 10 kg band, SHIPPED to CANCELLED allowed), notes the README contradiction about free shipping, rates product risks by likelihood and impact, orders findings by risk with CTFL section references, and proposes concrete test cases derived with named techniques. No source, test, or config file changes.",
+      "files": [
+        "fixtures/shopcart"
+      ],
+      "expectations": [
+        "A dated audit report file is written under docs/ in the audited repo",
+        "No source, test, or configuration file of the audited repo was changed (only new files under docs/)",
+        "The report gives both statement and branch coverage figures from a real coverage run",
+        "The report identifies tests/test_shipping.py::test_heavy_parcel as a test with no assertion",
+        "The report shows the free-shipping boundary failure: a total of exactly 50.00 is charged shipping, contrary to S3",
+        "The report shows the 10 kg weight-band failure (10 kg charged 19.90 instead of 9.90)",
+        "The report shows that member and bulk discounts stack to 15%, contrary to R3",
+        "The report shows that an order can be cancelled in state SHIPPED, contrary to O2/O3",
+        "The report shows at least one coupon defect (several coupons stack, or the 30.00 minimum is checked before the percentage discount)",
+        "The report flags the contradiction in the test basis between the FAQ ('over 50 €') and rule S3 ('50.00 or more')",
+        "The report has a product risk register in which each risk has a likelihood rating and an impact rating",
+        "Findings cite CTFL syllabus sections (for example §4.2.2)",
+        "The report lists concrete missing test cases with named techniques (EP, BVA, decision table, state transition) and gives the coverage of the existing tests per technique",
+        "The report states its assumptions about the context and the limits of the audit",
+        "The audit report file is at most 2,500 words and the chat reply is at most 200 words"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "lockout-test-design",
+      "prompt": "I'm about to write the tests for US-214 (account lockout). The story is in user-story.md and the code is lockout.py, both in this folder. What test cases should we have? I want something systematic, not three happy paths.",
+      "expected_output": "A test design that uses state transition testing (with invalid events and events during the lock), BVA on the failure count and on the 15 minute lock duration, traceability to AC1-AC5, expected results from the story, coverage per technique, and defects in the test basis (is exactly 15:00 still locked? is the count reset when the lock expires?). Ideally it shows by a probe that one failure after the lock expires locks the account again.",
+      "files": [
+        "fixtures/lockout/user-story.md",
+        "fixtures/lockout/lockout.py"
+      ],
+      "expectations": [
+        "Uses state transition testing with an explicit model (diagram or state table) that includes invalid events or events in the locked state",
+        "Applies BVA to the number of failed sign-ins, with at least 4 and 5 consecutive failures as test values",
+        "Applies BVA to the 15-minute lock duration with values just below, at, and just above 15 minutes",
+        "Flags as an ambiguity in the story whether the account is still locked at exactly 15:00",
+        "Identifies that the failed count is not reset when the lock expires, so one failure after expiry locks the account again (confirmed by a probe or clearly reported as a defect or gap)",
+        "Has a test case where a successful sign-in between failures resets the count (AC2)",
+        "Has a test case where the correct password is refused during the lock, and one where attempts during the lock do not extend it (AC3)",
+        "Has a test case where an administrator unlock resets the count (AC5)",
+        "Each test case is traced to an acceptance criterion ID and has an expected result",
+        "States the coverage achieved per technique as counts or percentages",
+        "lockout.py and user-story.md were not modified",
+        "The reply is at most 1,200 words"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pr88-change-review",
+      "prompt": "Can you review PR #88 from a testing point of view before I merge it? The repo (main branch) is shopcart/ in this folder. The diff is pr-88.diff, and the PR description and the issue it fixes are next to it.",
+      "expected_output": "A change review with a clear verdict (not ready, or ready only with conditions). It finds that the 'tidy' change in checkout.py makes free shipping use the subtotal before discounts, which contradicts S3, and shows it with an example. It notes that the confirmation test checks only 50.00 and asks for at least 49.99 (BVA), does an impact analysis, recommends a regression test at checkout level for discounts plus shipping, and notes that the FAQ still contradicts S3.",
+      "files": [
+        "fixtures/shopcart",
+        "fixtures/pr-88/pr-88.diff",
+        "fixtures/pr-88/pr-88.md",
+        "fixtures/pr-88/issue-87.md"
+      ],
+      "expectations": [
+        "Gives an explicit verdict that the PR is not ready to merge as it is (or ready only on condition that the checkout change is fixed or reverted)",
+        "Identifies that checkout.py now passes the subtotal before discounts to shipping_fee, which contradicts S3",
+        "Shows the regression with a concrete example (a discounted total under 50.00 that gets free shipping), from a run or a calculation",
+        "Points out that the checkout change is not required by issue #87 and was presented as a tidy-up",
+        "Notes that the new test checks only 50.00 and asks for at least 49.99 as a boundary value",
+        "Recommends a regression test at checkout level that combines discounts or coupons with shipping",
+        "Reports the result of running the test suite with the patch applied",
+        "Notes that the FAQ wording ('over 50 €') still contradicts S3",
+        "The working folder was not modified (the patch was not applied in place)",
+        "The reply is at most 1,200 words"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "coupon-defect-report",
+      "prompt": "Support escalated this today: a customer got 20 € off with SAVE10 by sending it twice in the same order (the app sent [\"SAVE10\", \"SAVE10\"]) on a 120.00 cart. Can you write a proper defect report for our tracker? The code is in shopcart/ in this folder.",
+      "expected_output": "A defect report that reproduces the failure (actual 88.00, expected 98.00 for a non-member: 10% bulk discount then one SAVE10). It has the usual fields (identifier, title, date, author, test object and version, environment, context, steps, expected and actual results with a reference to rule R4, severity and priority justified separately, status, references), a symptom-based title, a cause hypothesis labelled as such, and confirmation and regression tests (including other coupon combinations). It stays short.",
+      "files": [
+        "fixtures/shopcart"
+      ],
+      "expectations": [
+        "Reproduces the failure: actual total 88.00 against expected 98.00 for a non-member 120.00 cart",
+        "The expected result cites rule R4 (one coupon per order)",
+        "Severity and priority are two separate fields, each with its own justification",
+        "Identifies the test object (version 1.4.0 or module and function) and the test environment (for example the Python version)",
+        "Has numbered steps to reproduce with exact inputs",
+        "The title describes the observed failure, not a guessed cause",
+        "The cause (apply_coupons adds every code) is labelled as a hypothesis or kept apart from the observed facts",
+        "Proposes a confirmation test and regression tests that include another coupon combination (for example SAVE10 + WELCOME5)",
+        "The shopcart source code was not modified",
+        "The reply is at most 800 words"
+      ]
+    }
+  ]
+}

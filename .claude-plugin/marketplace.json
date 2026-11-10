@@ -9,6 +9,12 @@
       "source": "./plugins/fortytwo",
       "version": "1.0.0",
       "keywords": ["pool", "learning", "project-based"]
+    },
+    {
+      "name": "testing-fundamentals",
+      "source": "./plugins/testing-fundamentals",
+      "version": "0.1.0",
+      "keywords": ["testing", "qa", "istqb", "ctfl", "test-audit", "test-design"]
     }
   ]
 }

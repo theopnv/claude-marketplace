@@ -1,0 +1,38 @@
+diff --git a/shopcart/checkout.py b/shopcart/checkout.py
+index 50a5e14..aa89ef2 100644
+--- a/shopcart/checkout.py
++++ b/shopcart/checkout.py
+@@ -6,5 +6,5 @@ from .shipping import shipping_fee
+ 
+ def checkout(subtotal: Decimal, is_member: bool, weight_kg: Decimal, coupon_codes=()) -> dict:
+     total = cart_total(subtotal, is_member, coupon_codes)
+-    fee = shipping_fee(weight_kg, total)
++    fee = shipping_fee(weight_kg, subtotal)
+     return {"items_total": total, "shipping": fee, "grand_total": total + fee}
+diff --git a/shopcart/shipping.py b/shopcart/shipping.py
+index 34d4d23..4759acf 100644
+--- a/shopcart/shipping.py
++++ b/shopcart/shipping.py
+@@ -7,7 +7,7 @@ MAX_WEIGHT = Decimal("30")
+ def shipping_fee(weight_kg: Decimal, order_total: Decimal) -> Decimal:
+     if weight_kg <= 0 or weight_kg > MAX_WEIGHT:
+         raise ValueError("weight out of range")
+-    if order_total > FREE_SHIPPING_THRESHOLD:
++    if order_total >= FREE_SHIPPING_THRESHOLD:
+         return Decimal("0.00")
+     if weight_kg <= 2:
+         return Decimal("4.90")
+diff --git a/tests/test_shipping.py b/tests/test_shipping.py
+index 1dc9e09..39e7ba0 100644
+--- a/tests/test_shipping.py
++++ b/tests/test_shipping.py
+@@ -11,5 +11,9 @@ def test_free_shipping():
+     assert shipping_fee(D("5"), D("80.00")) == D("0.00")
+ 
+ 
++def test_free_shipping_at_threshold():
++    assert shipping_fee(D("5"), D("50.00")) == D("0.00")
++
++
+ def test_heavy_parcel():
+     shipping_fee(D("25"), D("20.00"))
